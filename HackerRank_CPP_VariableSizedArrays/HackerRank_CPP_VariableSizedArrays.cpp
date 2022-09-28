@@ -1,5 +1,4 @@
 // HackerRank_CPP_VariableSizedArrays.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <stdio.h>
 #include <iostream>
@@ -68,33 +67,22 @@ int main() {
         cout << endl;
     }
     */
+    
 
     //cout << "\nExecuting Queries\n\n";
     for (int a = 0; a < q; a++) {
 
         //cout << "Enter the index of the array & the element you want query: ";
         cin >> indexValue >> queryIndexValue;
-        //cout << endl;
+        
+        // I have the index value of everything i need
+        // Just print it!
+        cout << sizeableArray[indexValue][queryIndexValue];
+        cout << "\n";
 
-        if (indexValue < sizeableArray.size()) {
-            for (int b = 0 ; b < sizeableArray.size() ; b++) {
-                if (b == indexValue) {
-                    if (queryIndexValue < sizeableArray[b].size()) {
-                        for (int c = 0 ; c < sizeableArray[b].size() ; c++) {
-                            if (c == queryIndexValue) {
-                                cout << sizeableArray[b][c];
-                                cout << "\n";
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 
 
     //cout << "\nThank you for using the application!\n";
     return 0;
 }
-
-
