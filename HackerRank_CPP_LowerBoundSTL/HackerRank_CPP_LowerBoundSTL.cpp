@@ -1,21 +1,66 @@
-// HackerRank_CPP_LowerBoundSTL.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
+#include <cmath>
+#include <cstdio>
+#include <vector>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
-int main()
-{
-    cout << "Hello World!\n";
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+
+    vector<int> list;
+    int numberOfIntegers; // Number of integers you want to enter
+    int dataValue; // the value itself entered
+    int numberOfQueries;
+    int queryValue;
+    
+    cin >> numberOfIntegers;
+
+    for (int i = 0; i < numberOfIntegers; i++) {
+        cin >> dataValue;
+        list.push_back(dataValue);
+    }
+
+    sort(list.begin(), list.end());
+
+    cin >> numberOfQueries;
+
+    // The problem is that this logic or any other logic doesn't work on this IDE, but works on the website's IDE
+    for (int i = 0; i < numberOfQueries; i++) {
+        
+        cin >> queryValue;
+        // Creating a vector with iterator to store lower_bound() in it 
+        // what is an iterator?
+        vector<int>::iterator tempBound = lower_bound(list.begin(), list.end(), queryValue);
+        
+        if (queryValue != *tempBound) {
+            // Because i can't debug this code here on this IDE, I will guess that *tempBound
+            // Stores the same value of queryValue and its index, after executing lower_bound
+            cout << "No " << ( tempBound - list.begin() + 1 ) << endl;
+        }
+        else {
+            cout << "Yes " << (tempBound - list.begin() + 1) << endl;
+        }
+        
+    }
+    return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+/*
+    // 2nd Algorithm
+    for (int i = 0; i < numberOfQueries; i++) {
+        cin >> queryValue;
+        vector<int>::iterator tempBound = lower_bound(list.begin(), list.end(), queryValue);
+        int testVariable = (tempBound - list.begin());
+
+        if (list.at(testVariable) == queryValue) {
+          cout << "Yes " << testVariable + 1 << endl;
+        }
+        else {
+            cout << "No " << testVariable + 1 << endl;
+        }
+    }
+*/
