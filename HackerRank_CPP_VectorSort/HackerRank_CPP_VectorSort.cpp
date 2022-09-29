@@ -23,7 +23,7 @@ int main() {
     }
 
     sort(unsortedList.begin(), unsortedList.end());
-    cout << endl;
+    //cout << endl;
 
     for (int i = 0; i < unsortedList.size() ; i++) {
         cout << unsortedList[i] << " ";
