@@ -1,20 +1,56 @@
-// HackerRank_CPP_RectangleArea.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+using namespace std;
+
+class Rectangle {
+public:
+    // Data Members
+    int width, height;
+
+    // Member Functions
+    void display() {
+        cout << width << " " << height << endl;
+    }
+};
+
+class RectangleArea : public Rectangle {
+public:
+    void read_input() {
+        cin >> width >> height;
+        //cout << "I am a triangle\n";
+    }
+    int display() {
+        int area = width * height;
+        cout << area << endl;
+        return area;
+    }
+};
+
+/*
+ * Create classes Rectangle and RectangleArea
+ */
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    /*
+     * Declare a RectangleArea object
+     */
+    RectangleArea r_area;
+
+    /*
+     * Read the width and height
+     */
+    r_area.read_input();
+
+    /*
+     * Print the width and height
+     */
+    r_area.Rectangle::display();
+
+    /*
+     * Print the area
+     */
+    r_area.display();
+
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
