@@ -19,6 +19,9 @@ public:
         cout << "I am an isosceles triangle\n";
     }
     //Write your code here.
+    void description() {
+        cout << "In an isosceles triangle two sides are equal\n";
+    }
 };
 
 int main() {
