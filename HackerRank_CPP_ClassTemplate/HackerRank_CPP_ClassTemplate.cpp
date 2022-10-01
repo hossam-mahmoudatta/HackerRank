@@ -6,8 +6,22 @@
 #include <cassert>
 using namespace std;
 
+/*Template Syntax
+template <class T>
+class className {
+private:
+    T var;
+    ... .. ...
+public:
+    T functionName(T arg);
+    ... .. ...
+};
+*/
+
+
 /*Write the class AddElements here*/
-template <typename T> class AddElements {
+template <class T>
+class AddElements {
 private:
     T* ptr;
     int size;
@@ -17,8 +31,9 @@ public:
     void print();
 };
 
+
 // class template specialization:
-template <>
+template <class T>
 class MyTemplate <char> {
     char element;
 public:
