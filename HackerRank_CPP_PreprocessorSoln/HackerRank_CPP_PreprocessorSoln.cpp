@@ -1,20 +1,44 @@
-// HackerRank_CPP_PreprocessorSoln.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/* Enter your macros here */
+
+# define INF 10000000
+
+//# define minimum(min, x) (x < min) ? (min == x) : (min);
+//# define maximum(max, x) (x > max) ? (max == x) : (max);
+
+# define foreach(v, i) for(int i = 0 ; i < v.size() ; i++)
+# define io(v) cin >> v
+# define toStr(S) #S
+
+# define FUNCTION(name, operator) void name(int &current, int candidate) {!(current operator candidate) ? current = candidate : false;}
 
 #include <iostream>
+#include <vector>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+#if !defined toStr || !defined io || !defined FUNCTION || !defined INF
+#error Missing preprocessor definitions
+#endif 
+
+FUNCTION( minimum, < )
+FUNCTION( maximum, > )
+
+int main() {
+	int n; cin >> n;
+	vector<int> v(n);
+	
+	foreach(v, i) {
+		io(v)[i];
+	}
+
+	int mn = INF;
+	int mx = -INF;
+
+	foreach(v, i) {
+		minimum(mn, v[i]);
+		maximum(mx, v[i]);
+	}
+	int ans = mx - mn;
+	cout << toStr(Result = ) << ' ' << ans;
+	return 0;
+
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
