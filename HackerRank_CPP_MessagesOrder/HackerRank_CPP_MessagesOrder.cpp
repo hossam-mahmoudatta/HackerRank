@@ -14,14 +14,16 @@ public:
     Message() {
         
     }
-    Message(const int& ID, const string& textMSG) : 
+    Message(const int& ID, const string& smsMSG) : textMSG(smsMSG), msgOrder(ID) {
+        // Don't get it
+    }
     const string& get_text() {
         return textMSG;
     }
     const int& get_order() {
         return msgOrder;
     }
-    friend bool operator < (const Message& msg1, const Message& msg2) {
+    friend bool operator < (Message& msg1, Message& msg2) {
         return msg1.get_order() < msg2.get_order();
     }
     // overload operator < to fix_order().
@@ -40,7 +42,7 @@ public:
 
     Message create_message(const string& text) {
         return { 
-            msg_Order++, text
+            msg_Order++, text // dont get why increment
         };
     }
 };
