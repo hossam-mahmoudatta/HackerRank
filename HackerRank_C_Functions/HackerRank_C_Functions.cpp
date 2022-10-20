@@ -1,7 +1,27 @@
 #include <stdio.h>
 
 int max_of_four(int a, int b, int c, int d) {
-
+    int max;
+    max = a;
+    if (b > a) {
+        max = b;
+        if (c > b) {
+            max = c;
+            if (d > c) {
+                max = d;
+            }
+        }
+    }
+    else if (c > a) {
+        max = c;
+        if (d > c) {
+            max = d;
+        }
+    }
+    else if (d > a) {
+        max = d;
+    }
+    return max;
 }
 
 
