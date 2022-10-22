@@ -12,9 +12,12 @@ int main() {
     scanf("%d", &n);
     //Complete the code to calculate the sum of the five digits on n.
     int i = 0;
+    int dividend = 10000;
     int sum = 0;
     while (i < 5) {
-        n = n % 10;
+        n = n / dividend;
+        dividend /= 10;
+
         sum += n;
         
         i++;
