@@ -38,6 +38,7 @@ int main()
             scanf("%d %d", &x, &y);
 
             // Query2 function is to print the number of pages in the Yth book on the Xth Shelve
+            // 
             printf("%d\n", *(*(total_number_of_pages + x) + y));
         }
         else {
@@ -45,6 +46,7 @@ int main()
             scanf("%d", &x);
 
             // Query3 function is to print the number of books on the Xth Shelve
+            // 
             printf("%d\n", *(total_number_of_books + x));
         }
     }
