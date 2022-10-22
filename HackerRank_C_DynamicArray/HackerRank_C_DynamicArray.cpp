@@ -1,27 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
- * This stores the total number of books in each shelf.
- */
+// This stores the total number of books in each shelf.
 int* total_number_of_books;
 
-/*
- * This stores the total number of pages in each book of each shelf.
- * The rows represent the shelves and the columns represent the books.
- */
+// This stores the total number of pages in each book of each shelf.
+//The rows represent the shelves and the columns represent the books.
 int** total_number_of_pages;
 
 int main()
 {
+    // Here i will be inputting the number of shelves
     int total_number_of_shelves;
     scanf("%d", &total_number_of_shelves);
 
+    // Here i will be inputting the number of queries
     int total_number_of_queries;
     scanf("%d", &total_number_of_queries);
 
+
     while (total_number_of_queries--) {
         int type_of_query;
+
+        // The type of query either its 1, 2, or 3
         scanf("%d", &type_of_query);
 
         if (type_of_query == 1) {
