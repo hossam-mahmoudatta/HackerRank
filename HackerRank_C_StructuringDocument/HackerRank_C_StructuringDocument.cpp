@@ -28,10 +28,10 @@ struct document {
 };
 
 // COMPLETE THESE FUNCTIONS
-char** split_string(char* text, char delim) {
+sentence split_string(char* text, char delim) {
     // The idea here is to use strtok, and to use strtok, we need a delimiter
     // Dynamically allocating memory space for string
-    char** resultString = (char**)malloc(1 * sizeof(char*));
+    struct sentence resultString = (struct sentence)malloc(1 * sizeof(struct sentence));
     int size = 1;
 
     char* temp = strtok(text, &delim);
