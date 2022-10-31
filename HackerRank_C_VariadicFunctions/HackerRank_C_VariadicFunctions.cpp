@@ -10,15 +10,81 @@
 #define MAX_ELEMENT 1000000
 
 int  sum(int count, ...) {
+    int total = 0;
 
+    // Declaring pointer to the argument list
+    va_list PTR; // Holds the information needed by va_start, va_arg, va_end, and va_copy.
+
+    // Initializing argument to the list pointer
+    va_start(PTR, count); // Enables access to variadic function arguments.
+
+    for (int i = 0; i < count; i++) {
+        // Accessing current variable and pointing to next one
+        total += va_arg(PTR, int); // Accesses the next variadic function argument.
+    }
+
+    // Ending argument list traversal
+    va_end(PTR); // Ends the traversal of the variadic function arguments.
+
+    return total;
 }
 
 int min(int count, ...) {
+    int minimum = 0;
+    int temp = 0;
 
+    // Declaring pointer to the argument list
+    va_list PTR; // Holds the information needed by va_start, va_arg, va_end, and va_copy.
+
+    // Initializing argument to the list pointer
+    va_start(PTR, count); // Enables access to variadic function arguments.
+    minimum = va_arg(PTR, int);
+    
+    for (int i = 0; i < count; i++) {
+        // Accessing current variable and pointing to next one
+        temp = va_arg(PTR, int);
+
+        if (temp < minimum) {
+            minimum = temp; // Accesses the next variadic function argument.
+        }
+        else {
+            minimum = minimum;
+        }
+        
+    }
+
+    // Ending argument list traversal
+    va_end(PTR); // Ends the traversal of the variadic function arguments.
+
+    return minimum;
 }
 
 int max(int count, ...) {
+    int maximum = 0;
+    int temp = 0;
+    // Declaring pointer to the argument list
+    va_list PTR; // Holds the information needed by va_start, va_arg, va_end, and va_copy.
 
+    // Initializing argument to the list pointer
+    va_start(PTR, count); // Enables access to variadic function arguments.
+    maximum = va_arg(PTR, int);
+
+    for (int i = 0; i < count - 1 ; i++) {
+        // Accessing current variable and pointing to next one
+        temp = va_arg(PTR, int);
+
+        if (temp > maximum) {
+            maximum = temp; // Accesses the next variadic function argument.
+        }
+        else {
+            maximum = maximum;
+        }
+    }
+
+    // Ending argument list traversal
+    va_end(PTR); // Ends the traversal of the variadic function arguments.
+
+    return maximum;
 }
 
 int test_implementations_by_sending_three_elements() {
