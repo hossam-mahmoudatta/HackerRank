@@ -1,20 +1,59 @@
-// HackerRank_C_DigitFrequency.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// Problem Link
+// https://www.hackerrank.com/challenges/frequency-of-digits-1/problem?isFullScreen=true
 
-#include <iostream>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+
+    // Allocating the size for the sentence as the max of 1000 chars
+    char* sentence = (char*)malloc(1024 * sizeof(char));
+    int frequency[10] = { 0 };
+    // Getting user input untill newline char
+    scanf("%s", sentence);
+    // Reallocating memory to the exact length of the sentence
+    sentence = (char*)realloc(sentence, strlen(sentence) + 1);
+
+    //Write your logic to print the tokens of the sentence here.
+    for (int i = 0; i < strlen(sentence); i++) {
+        if (sentence[i] == '0') {
+            frequency[0] += 1;
+        }
+        else if (sentence[i] == '1') {
+            frequency[1] += 1;
+        }
+        else if (sentence[i] == '2') {
+            frequency[2] += 1;
+        }
+        else if (sentence[i] == '3') {
+            frequency[3] += 1;
+        }
+        else if (sentence[i] == '4') {
+            frequency[4] += 1;
+        }
+        else if (sentence[i] == '5') {
+            frequency[5] += 1;
+        }
+        else if (sentence[i] == '6') {
+            frequency[6] += 1;
+        }
+        else if (sentence[i] == '7') {
+            frequency[7] += 1;
+        }
+        else if (sentence[i] == '8') {
+            frequency[8] += 1;
+        }
+        else if (sentence[i] == '9') {
+            frequency[9] += 1;
+        }
+    }
+    //printf("\nFrequency is: \n");
+    for (int i = 0; i < (sizeof(frequency) / sizeof(int)) ; i++) {
+        printf("%d ", frequency[i]);
+    }
+    free(sentence);
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
