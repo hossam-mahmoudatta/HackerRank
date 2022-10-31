@@ -11,13 +11,16 @@ int main() {
 
     // Allocating the size for the sentence as the max of 1000 chars
     char* sentence = (char*)malloc(1024 * sizeof(char));
-    int frequency[10] = { 0 };
     // Getting user input untill newline char
     scanf("%s", sentence);
     // Reallocating memory to the exact length of the sentence
     sentence = (char*)realloc(sentence, strlen(sentence) + 1);
 
-    //Write your logic to print the tokens of the sentence here.
+    // Write your logic to print the tokens of the sentence here.
+    // I will create an array that i will store the frequency inside it
+    // that means whenever i find a number, i will increment it
+    // Into its corresponding place
+    int frequency[10] = { 0 };
     for (int i = 0; i < strlen(sentence); i++) {
         if (sentence[i] == '0') {
             frequency[0] += 1;
