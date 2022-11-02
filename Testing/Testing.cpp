@@ -22,11 +22,12 @@ int main() {
 	
 	char* temp;
 	temp = (char*)malloc(1 * sizeof(char*));
-	temp = *arr;
-	printf("Temp: %s\n", temp);
+	//printf("Temp: %s\n", temp);
+	
 	printf("Printing now the array of strings: \n");
 
-	for (int i = 0; i < n; i++) {
+	for (int i = 1; i < n; i++) {
+		temp = arr[i - 1];
 		printf("\n%d: %s\n", (i + 1), *(arr + i)); // reading whats inside the address place
 		printf("Printing now characters of the word: \n");
 		
@@ -36,12 +37,15 @@ int main() {
 			// And turns out that arr[i][j] works too!
 			// To explain, *(arr + i) means arr[i]
 			// And *((*(arr + i)) + j) means arr[i][j]
+			
+			if (temp)
+
 			printf("%d.%d: %c\n", (i + 1), (j + 1), *((*(arr + i)) + j));
 		}
-		printf("Temp: %c %c\n", temp[2], temp[3]);
+		//printf("Temp: %c %c\n", temp[2], temp[3]);
 		// Now that i know how to access everything using pointers
 		// I now need to compare
-		//if (temp)
+		
 	}
 }
 
