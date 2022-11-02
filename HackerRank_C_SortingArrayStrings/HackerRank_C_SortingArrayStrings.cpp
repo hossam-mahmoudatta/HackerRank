@@ -21,6 +21,10 @@ int sort_by_length(const char* a, const char* b) {
 }
 
 void string_sort(char** arr, const int len, int (*cmp_func)(const char* a, const char* b)) {
+    // Why is the Array of strings lengthis declared in const?
+    // Here I will take a string, or array of Strings
+    
+
 
 }
 
