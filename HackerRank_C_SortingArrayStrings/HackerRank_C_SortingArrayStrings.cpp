@@ -5,6 +5,20 @@
 #include <stdlib.h>
 #include <string.h>
 int lexicographic_sort(const char* a, const char* b) {
+    // a and b are strings
+    int aLength = strlen(a);
+    int bLength = strlen(b);
+
+    if (aLength < bLength) {
+        for (int i = 0; i < aLength; i++) {
+            if (a[i] < b[i])
+        }
+    }
+    else {
+        for (int i = 0; i < bLength; i++) {
+
+        }
+    }
 
 }
 
@@ -23,7 +37,19 @@ int sort_by_length(const char* a, const char* b) {
 void string_sort(char** arr, const int len, int (*cmp_func)(const char* a, const char* b)) {
     // Why is the Array of strings lengthis declared in const?
     // Here I will take a string, or array of Strings
-    
+    // Now I have inputted the string of arrays
+    // i guess i can access the chars by using nested for loop
+
+    // Declaring a temp variable to store the 1st word from the main array
+    char** temp;
+    temp = (char**)malloc(1 * sizeof(char*));
+    temp = arr;
+
+    for (int i = 0; i < len; i++) {
+        for (int j = 0; j < strlen(*(arr + i)); i++) {
+            printf("%d: %s\n", (j + 1), **(arr + i));
+        }
+    }
 
 
 }
