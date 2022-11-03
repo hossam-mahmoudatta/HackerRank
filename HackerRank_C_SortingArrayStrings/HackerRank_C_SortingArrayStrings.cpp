@@ -7,134 +7,72 @@
 
 int lexicographic_sort(const char* a, const char* b) {
     // a and b are strings
-    int aLength = strlen(a);
-    int bLength = strlen(b);
-    int order = 0;
+    int i = 0;
+    while (a[i] != '\0' || b[i] != '\0') {
 
-    if (a[0] < b[0]) {
-        order = 1;
-        return order;
-    }
-    else if (a[0] > b[0]) {
-        order = 2;
-        return order;
-    }
-
-    if (aLength < bLength) {
-        for (int i = 0; i < aLength; i++) {
-            if (a[i] < b[i]) {
-                order = 1;
-                return order;
-            }
-            else if (a[i] > b[i]) {
-                order = 2;
-                return order;
-            }
+        if (a[i] < b[i]) {
+            return -1;
         }
-    }
-    else {
-        for (int i = 0; i < bLength; i++) {
-            if (a[i] < b[i]) {
-                order = 1;
-                return order;
-            }
-            else if (a[i] > b[i]) {
-                order = 2;
-                return order;
-            }
+        else if (a[i] > b[i]) {
+            return 1;
         }
+        else if (a[i] == '\0') {
+            return -1;
+        }
+        else if (b[i] == '\0') {
+            return 1;
+        }
+        i++;
     }
-    return order;
+    return 0;
 }
 
 int lexicographic_sort_reverse(const char* a, const char* b) {
     // a and b are strings
-    int aLength = strlen(a);
-    int bLength = strlen(b);
-    int order = 0;
-
-    if (a[0] < b[0]) {
-        order = 2;
-        return order;
-    }
-    else if (a[0] > b[0]) {
-        order = 1;
-        return order;
-    }
-
-    if (aLength < bLength) {
-        for (int i = 0; i < aLength; i++) {
-            if (a[i] < b[i]) {
-                order = 2;
-                return order;
-            }
-            else if (a[i] > b[i]) {
-                order = 1;
-                return order;
-            }
-        }
-    }
-    else {
-        for (int i = 0; i < bLength; i++) {
-            if (a[i] < b[i]) {
-                order = 2;
-                return order;
-            }
-            else if (a[i] > b[i]) {
-                order = 1;
-                return order;
-            }
-        }
-    }
-    return order;
+    return -1 * lexicographic_sort(a, b);
 }
 
 int sort_by_number_of_distinct_characters(const char* a, const char* b) {
     // a and b are strings
     int aLength = strlen(a);
     int bLength = strlen(b);
-    int order = 0;
+    int aDist = 0;
+    int bDist = 0;
     
     char tempA = a[0];
     char tempB = b[0];
-    for (int i = 0; i < aLength; i++) {
+    for (int i = 1; i < aLength; i++) {
+        if (a[i] != tempA) {
+            aDist++;
+        }
+    }
+    for (int i = 1; i < bLength; i++) {
+        if (b[i] != tempB) {
+            bDist++;
+        }
+    }
 
+    if (aDist < bDist) {
+        return -1;
     }
-    if (aLength < bLength) {
-        order = 1;
-        return order;
+    else if (aDist > bDist) {
+        return 1;
     }
-    else if (aLength == bLength) {
-        order = lexicographic_sort(a, b);
-        return order;
-    }
-    else if (aLength > bLength) {
-        order = 2;
-        return order;
-    }
-    return order;
-
+    return lexicographic_sort(a, b);
 }
 
 int sort_by_length(const char* a, const char* b) {
     // a and b are strings
     int aLength = strlen(a);
     int bLength = strlen(b);
-    int order = 0;
 
     if (aLength < bLength) {
-        order = 1;
-        return order;
-    }
-    else if (aLength == bLength) {
-        order = lexicographic_sort(a, b);
-        return order;
+        return -1;
     }
     else if (aLength > bLength) {
-        order = 2;
-        return order;
+        return 1;
     }
-    return order;
+    return lexicographic_sort(a, b);
 }
 
 void string_sort(char** arr, const int len, int (*cmp_func)(const char* a, const char* b)) {
@@ -144,22 +82,24 @@ void string_sort(char** arr, const int len, int (*cmp_func)(const char* a, const
     char* temp;
     temp = (char*)malloc(1 * sizeof(char*));
 
-    for (int i = 1; i < len; i++) {
-        temp = arr[i - 1];
+    for (int i = 1 ; i < len ; i++) {
         printf("\n%d: %s\n", (i + 1), *(arr + i)); // reading whats inside the address place
         printf("Printing now characters of the word: \n");
 
-        for (int j = 0; j < strlen(*(arr + i)); i++) {
+        for (int j = 0; j < strlen(*(arr + i)); j++) {
             // *(&arr[j] + i) actually prints garbage in the place of the characters
             // Turns out that *((*(arr + i)) + j) is what will print the chars inside the string
             // And turns out that arr[i][j] works too!
             // To explain, *(arr + i) means arr[i]
             // And *((*(arr + i)) + j) means arr[i][j]
             printf("%d.%d: %c\n", (i + 1), (j + 1), *((*(arr + i)) + j));
+            if (cmp_func(arr[i], arr[j]) > 0) {
+                temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+            }
         }
     }
-
-
 }
 
 
