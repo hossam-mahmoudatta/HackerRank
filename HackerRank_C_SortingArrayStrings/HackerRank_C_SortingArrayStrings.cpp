@@ -7,22 +7,22 @@
 
 int lexicographic_sort(const char* a, const char* b) {
     // a and b are strings
-    int i = 0;
-    while (a[i] != '\0' || b[i] != '\0') {
+    
+    while (*a != '\0' || *b != '\0') {
 
-        if (a[i] < b[i]) {
+        if (*a < *b) {
             return -1;
         }
-        else if (a[i] > b[i]) {
+        else if (*a > *b) {
             return 1;
         }
-        else if (a[i] == '\0') {
+        else if (*a == '\0') {
             return -1;
         }
-        else if (b[i] == '\0') {
+        else if (*b == '\0') {
             return 1;
         }
-        i++;
+        a++, b++;
     }
     return 0;
 }
@@ -80,24 +80,25 @@ void string_sort(char** arr, const int len, int (*cmp_func)(const char* a, const
     // 
     // Declaring a temp variable to store the 1st word from the main array
     char* temp;
-    temp = (char*)malloc(1 * sizeof(char*));
+    int k = 1;
 
-    for (int i = 1 ; i < len ; i++) {
+    for (int i = 0 ; i < len ; i++) {
         printf("\n%d: %s\n", (i + 1), *(arr + i)); // reading whats inside the address place
         printf("Printing now characters of the word: \n");
 
-        for (int j = 0; j < strlen(*(arr + i)); j++) {
+        for (int j = i + 1; j < len ; j++) {
             // *(&arr[j] + i) actually prints garbage in the place of the characters
             // Turns out that *((*(arr + i)) + j) is what will print the chars inside the string
             // And turns out that arr[i][j] works too!
             // To explain, *(arr + i) means arr[i]
             // And *((*(arr + i)) + j) means arr[i][j]
-            printf("%d.%d: %c\n", (i + 1), (j + 1), *((*(arr + i)) + j));
+            printf("%d.%d: %c\n", (i + 1), (k), *((*(arr + i)) + k - 1));
             if (cmp_func(arr[i], arr[j]) > 0) {
                 temp = arr[j];
                 arr[j] = arr[i];
                 arr[i] = temp;
             }
+            k++;
         }
     }
 }
@@ -105,12 +106,13 @@ void string_sort(char** arr, const int len, int (*cmp_func)(const char* a, const
 
 int main()
 {
+    printf("Size of the array of strings: \n");
     int n;
     scanf("%d", &n);
 
     char** arr;
     arr = (char**)malloc(n * sizeof(char*));
-    arr = NULL;
+    
 
     for (int i = 0; i < n; i++) {
         *(arr + i) = (char*)malloc(1024 * sizeof(char));
