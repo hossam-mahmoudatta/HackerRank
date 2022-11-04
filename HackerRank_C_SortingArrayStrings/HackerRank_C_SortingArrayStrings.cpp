@@ -7,9 +7,8 @@
 
 int lexicographic_sort(const char* a, const char* b) {
     // a and b are strings
-    
+    // Here the while loop will loop untill the null character inside the character
     while (*a != '\0' || *b != '\0') {
-
         if (*a < *b) {
             return -1;
         }
@@ -32,35 +31,6 @@ int lexicographic_sort_reverse(const char* a, const char* b) {
     return -1 * lexicographic_sort(a, b);
 }
 
-int sort_by_number_of_distinct_characters(const char* a, const char* b) {
-    // a and b are strings
-    int aLength = strlen(a);
-    int bLength = strlen(b);
-    int aDist = 0;
-    int bDist = 0;
-    
-    char tempA = a[0];
-    char tempB = b[0];
-    for (int i = 1; i < aLength; i++) {
-        if (a[i] != tempA) {
-            aDist++;
-        }
-    }
-    for (int i = 1; i < bLength; i++) {
-        if (b[i] != tempB) {
-            bDist++;
-        }
-    }
-
-    if (aDist < bDist) {
-        return -1;
-    }
-    else if (aDist > bDist) {
-        return 1;
-    }
-    return lexicographic_sort(a, b);
-}
-
 int sort_by_length(const char* a, const char* b) {
     // a and b are strings
     int aLength = strlen(a);
@@ -75,6 +45,45 @@ int sort_by_length(const char* a, const char* b) {
     return lexicographic_sort(a, b);
 }
 
+int distinct_identifer(const char* a) {
+    const char* temp;
+    int sum = 0;
+    int is_distinct;
+
+    while (*a != '\0') {
+        // Since a is not null, then its a unique char
+        is_distinct = 1;
+        // set the temp char to the next char in the string
+        temp = a + 1;
+        while (*temp != '\0') {
+            if (*temp == *a) {
+                // if this condition is true, then the letters are same, so no distinctions
+                is_distinct = 0;
+                // Break will go outside the while loop of the temp
+                break;
+            }
+            temp++;
+        }
+        sum += is_distinct;
+        a++;
+    }
+    return sum;
+}
+
+int sort_by_number_of_distinct_characters(const char* a, const char* b) {
+    // a and b are strings
+    int a_distinct = distinct_identifer(a);
+    int b_distinct = distinct_identifer(b);
+
+    if (a_distinct < b_distinct)
+        return -1;
+    if (a_distinct > b_distinct)
+        return 1;
+
+    // else
+    return lexicographic_sort(a, b);
+}
+
 void string_sort(char** arr, const int len, int (*cmp_func)(const char* a, const char* b)) {
     // Why is the Array of strings length is declared in const?
     // 
@@ -83,8 +92,8 @@ void string_sort(char** arr, const int len, int (*cmp_func)(const char* a, const
     int k = 1;
 
     for (int i = 0 ; i < len ; i++) {
-        printf("\n%d: %s\n", (i + 1), *(arr + i)); // reading whats inside the address place
-        printf("Printing now characters of the word: \n");
+        //printf("\n%d: %s\n", (i + 1), *(arr + i)); // reading whats inside the address place
+        //printf("Printing now characters of the word: \n");
 
         for (int j = i + 1; j < len ; j++) {
             // *(&arr[j] + i) actually prints garbage in the place of the characters
@@ -92,7 +101,7 @@ void string_sort(char** arr, const int len, int (*cmp_func)(const char* a, const
             // And turns out that arr[i][j] works too!
             // To explain, *(arr + i) means arr[i]
             // And *((*(arr + i)) + j) means arr[i][j]
-            printf("%d.%d: %c\n", (i + 1), (k), *((*(arr + i)) + k - 1));
+            //printf("%d.%d: %c\n", (i + 1), (k), *((*(arr + i)) + k - 1));
             if (cmp_func(arr[i], arr[j]) > 0) {
                 temp = arr[j];
                 arr[j] = arr[i];
