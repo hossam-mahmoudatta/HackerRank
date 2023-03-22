@@ -8,16 +8,53 @@
 
 int main() {
     int n;
-    scanf("%d", &n);
-    
+    scanf_s("%d", &n);
+    printf("\n");
+    // So how to think about it?
+    // There is a pattern, that the 1st row is 
+    // print n = [(n * 2) - 1] times
+    // Its a nested for loop, and both loops should run for [(n * 2) - 1] times
+    // Nested for loop with the same conditions because it prints a square
+    // 
+    // Second row is 
     // Complete the code to print the pattern.
-    for (int i = n ; i > 0 ; i--) {
-        printf("%d ", i);
+    // 
+    int sizeLimit = (n * 2) - 1;
+    int start = 0;
+    int end = sizeLimit - 1;
+   
+    // Allocate memory for the array of pointers to rows
+    int** numberArray = (int**)malloc(sizeLimit * sizeof(int*));
+
+    // Allocate memory for each row
+    for (int i = 0 ; i < sizeLimit ; i++) {
+        numberArray[i] = (int*)malloc(sizeLimit * sizeof(int));
     }
 
-
-
-
+    while (n != 0) {
+        for (int i = start ; i <= end; i++) {
+            //printf("%d ", n);
+            for (int j = start ; j <= end ; j++) {
+                if ((i == start) || (j == start) || (i == end) || (j == end)) {
+                    // This condition detects if its the 1st row so that I could print "n"
+                    numberArray[i][j] = n;
+                    printf("%d ", numberArray[i][j]);
+                }
+            }
+            ++start;
+            --end;
+            --n;
+            //printf("\n");
+        }
+    }
+    for (int i = 0; i <= sizeof(numberArray) ; i++) {
+        for (int j = 0 ; j <= sizeof(numberArray) ; j++) {
+            printf("%d ", numberArray[i][j]);
+        }
+        printf("\n");
+    }
+    /*
+    */
     return 0;
 }
 
