@@ -22,7 +22,10 @@ int main() {
     int sizeLimit = (n * 2) - 1;
     int start = 0;
     int end = sizeLimit - 1;
-   
+    //int numberArray[sizeLimit][sizeLimit];
+
+   /*    */
+
     // Allocate memory for the array of pointers to rows
     int** numberArray = (int**)malloc(sizeLimit * sizeof(int*));
 
@@ -31,28 +34,32 @@ int main() {
         numberArray[i] = (int*)malloc(sizeLimit * sizeof(int));
     }
 
+
     while (n != 0) {
         for (int i = start ; i <= end; i++) {
-            //printf("%d ", n);
             for (int j = start ; j <= end ; j++) {
                 if ((i == start) || (j == start) || (i == end) || (j == end)) {
                     // This condition detects if its the 1st row so that I could print "n"
                     numberArray[i][j] = n;
-                    printf("%d ", numberArray[i][j]);
+                    //printf("%d ", numberArray[i][j]);
                 }
             }
-            ++start;
-            --end;
-            --n;
-            //printf("\n");
         }
+        ++start;
+        --end;
+        --n;
     }
-    for (int i = 0; i <= sizeof(numberArray) ; i++) {
-        for (int j = 0 ; j <= sizeof(numberArray) ; j++) {
+    for (int i = 0; i < sizeLimit; i++) {
+        for (int j = 0 ; j < sizeLimit; j++) {
             printf("%d ", numberArray[i][j]);
         }
         printf("\n");
     }
+
+    for (int i = 0 ; i < sizeLimit ; i++) {
+        free(numberArray[i]);
+    }
+    free(numberArray);
     /*
     */
     return 0;
