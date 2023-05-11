@@ -1,4 +1,4 @@
-// HackerRank_PS(Intermediate)_Bitwise.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// HackerRank_PS(Intermediate)_Array.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <stdio.h>
@@ -6,35 +6,47 @@
 #include <math.h>
 
 int main() {
-    
+
     printf("Hello World!\n\n");
-    // BITWISE AND Problem
+    // Equalizing Array Elements
     // So whats the algorithm?
     /*
-    I will AND the index with its next one
-    Nested for loop so that i can take each index with the next one
-    After ANDing, I will save the result, and then check if its a power of two if  i squared
-    if then, increment a counter
+    Have an array, I have a threshold of how many equal elements
+    and I need to count the number of operations to do this
+    Algorithm: 
+
 
     */
-    int arr[3] = { 0, 2, 4 };
+    int arr[4] = { 64, 30, 25, 33 };
     int arrLength = sizeof(arr) / sizeof(arr[0]);
     int value = 0;
+    int divisionParameter = 2;
+    int threshold = 3;
     int counter = 0;
-    int base = 2;
+
     for (int i = 0; i < arrLength; i++) {
-        for (int j =i + 1; j < arrLength; j++) {
+        for (int j = i + 1; j < arrLength; j++) {
             value = arr[i] & arr[j];
-           
+            //value = sqrt(value);
             if (value == 0) {
                 continue;
             }
-            while (value % base == 0) {
-                value /= base;
+            while (value % 2 == 0) {
+                value /= 2;
             }
             if (value == 1) {
                 counter++;
             }
+
+            /*
+            while (pow(2, power) != value) {
+                power++;
+                if (power > 12) {
+                    continue;
+                }
+            }
+            counter++;
+            */
             value = 0;
         }
     }
