@@ -2,19 +2,58 @@
 //
 
 #include <iostream>
+#include <vector>
+using namespace std;
+/*
+int taskOfPairing(int freq_size, int* freq) {
+    int pairsCounter = 0;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+    int prevRemainder = 0;
+
+    for (int i = 0; i < freq_size; i++) {
+        if (freq[i] == 0) {
+            prevRemainder = 0;
+            continue;
+        }
+
+        freq[i] += prevRemainder;
+        pairsCounter += freq[i] / 2;
+        prevRemainder = freq[i] % 2;
+    }
+
+    return pairsCounter;
+
+}
+*/
+
+
+int taskOfPairing(const vector<int>& freq) {
+    int pairs = 0;
+    int remainingSingles = 0;
+
+    for (int i = 0 ; i < freq.size() ; i++) {
+        pairs += freq[i] / 2;  
+        // Calculate the number of complete pairs that can be formed
+        
+        remainingSingles += freq[i] % 2;
+        // Track the number of singles remaining
+
+        if (remainingSingles >= 2) {
+            // If there are at least two singles, we can form another pair
+            pairs++;
+            remainingSingles -= 2;
+        }
+    }
+    return pairs;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+int main() {
+    // Example usage
+    vector<int> freq = { 6, 5, 3};
+    int maxPairs = taskOfPairing(freq);
+    cout << "Maximum number of pairs: " << maxPairs << endl;
+
+    return 0;
+}
+
