@@ -22,6 +22,7 @@ int main() {
     int value = 0;
     int counter = 0;
     int base = 2;
+
     for (int i = 0; i < arrLength; i++) {
         for (int j =i + 1; j < arrLength; j++) {
             value = arr[i] & arr[j];

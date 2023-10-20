@@ -4,11 +4,14 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-/*
-int taskOfPairing(int freq_size, int* freq) {
-    int pairsCounter = 0;
 
-    int prevRemainder = 0;
+
+int taskOfPairing(vector <int> freq) {
+    int freq_size = freq.size();
+    
+    long pairsCounter = 0;
+
+    long prevRemainder = 0;
 
     for (int i = 0; i < freq_size; i++) {
         if (freq[i] == 0) {
@@ -21,12 +24,12 @@ int taskOfPairing(int freq_size, int* freq) {
         prevRemainder = freq[i] % 2;
     }
 
-    return pairsCounter;
+    return (int) pairsCounter;
 
 }
-*/
 
 
+/*
 int taskOfPairing(const vector<int>& freq) {
     int pairs = 0;
     int remainingSingles = 0;
@@ -46,12 +49,13 @@ int taskOfPairing(const vector<int>& freq) {
     }
     return pairs;
 }
-
+*/
 
 int main() {
     // Example usage
-    vector<int> freq = { 6, 5, 3};
-    int maxPairs = taskOfPairing(freq);
+    vector<int> freq = { 5, 6, 2};
+    int size = freq.size();
+    long maxPairs = taskOfPairing(freq);
     cout << "Maximum number of pairs: " << maxPairs << endl;
 
     return 0;

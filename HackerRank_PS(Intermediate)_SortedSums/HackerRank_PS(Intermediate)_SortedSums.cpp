@@ -39,8 +39,8 @@ int sortedSum(const vector<int>& a) {
 
 int main() {
     // Example usage
-    vector<int> a = { 9, 5, 8};
-    //vector<int> a = { 989605, 554335, 938146, 420327, 573599, 674780, 226418, 80001, 589043, 194195 };
+    //vector<int> a = { 9, 5, 8};
+    vector<int> a = { 989605, 554335, 938146, 420327, 573599, 674780, 226418, 80001, 589043, 194195 };
     int result = sortedSum(a);
     cout << "Result: " << result << endl;
 

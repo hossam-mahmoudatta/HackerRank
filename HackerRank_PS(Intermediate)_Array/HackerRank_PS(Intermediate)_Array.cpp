@@ -1,29 +1,11 @@
 // HackerRank_PS(Intermediate)_Array.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <iostream>
+#include <vector>
+#include <map>
 
-int main() {
-
-    printf("Hello World!\n\n");
-    // Equalizing Array Elements
-    // So whats the algorithm?
-    /*
-    Have an array, I have a threshold of how many equal elements
-    and I need to count the number of operations to do this
-    Algorithm: 
-
-
-    */
-    int arr[4] = { 64, 30, 25, 33 };
-    int arrLength = sizeof(arr) / sizeof(arr[0]);
-    int value = 0;
-    int divisionParameter = 2;
-    int threshold = 3;
-    int counter = 0;
-
+/*
     for (int i = 0; i < arrLength; i++) {
         for (int j = i + 1; j < arrLength; j++) {
             value = arr[i] & arr[j];
@@ -37,31 +19,56 @@ int main() {
             if (value == 1) {
                 counter++;
             }
-
-            /*
-            while (pow(2, power) != value) {
-                power++;
-                if (power > 12) {
-                    continue;
-                }
-            }
-            counter++;
-            */
             value = 0;
         }
     }
     printf("How many pairs? %d", counter);
     printf("\n");
+}
+*/
 
+using namespace std;
+
+int minOperations(vector<int>& arr, int threshold, int d) {
+    map<int, int> freqMap;
+
+    // Count the frequency of remainders after division
+    for (int num : arr) {
+        int remainder = num % d;
+        freqMap[remainder]++;
+    }
+
+    int minOperations = 0;
+    int totalEqualElements = 0;
+
+    // Iterate through the frequency map
+    for (const auto& pair : freqMap) {
+        int remainder = pair.first;
+        int frequency = pair.second;
+
+        // Calculate the number of operations needed for each remainder
+        int operations = (frequency - 1) / threshold;
+        minOperations += operations;
+
+        // Calculate the total number of equal elements achieved
+        totalEqualElements += operations * threshold;
+    }
+
+    // Calculate the remaining elements needed to reach the threshold
+    int remainingElements = threshold - totalEqualElements;
+    minOperations += remainingElements;
+
+    return minOperations;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+int main() {
+    vector<int> arr = { 64, 30, 25, 33 };
+    // vector<int> arr = { 1, 2, 3, 4 };
+    int threshold = 2;
+    int d = 2;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    int result = minOperations(arr, threshold, d);
+    std::cout << "Minimum number of operations: " << result << std::endl;
+
+    return 0;
+}

@@ -3,16 +3,17 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+using namespace std;
 
 int maxPairs(const std::vector<int>& rating, int minDiff) {
     int n = rating.size();
     int pairs = 0;
 
     // copy the input inside a new vector
-    std::vector<int> sortedRating = rating;
+    vector<int> sortedRating = rating;
     
     // Sort the ratings in non-decreasing order
-    std::sort(sortedRating.begin(), sortedRating.end());
+    sort(sortedRating.begin(), sortedRating.end());
 
     // Find pairs with a difference of at least minDiff
     for (int i = 0; i < n; i++) {              
